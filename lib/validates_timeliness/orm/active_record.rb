@@ -17,7 +17,7 @@ module ValidatesTimeliness
         def timeliness_column_for_attribute(attr_name)
           columns_hash.fetch(attr_name.to_s) do |attr_name|
             validation_type = _validators[attr_name.to_sym].find {|v| v.kind == :timeliness }.type
-            ::ActiveRecord::ConnectionAdapters::Column.new(attr_name, nil, validation_type, validation_type.to_s)
+            ::ActiveRecord::ConnectionAdapters::Column.new(attr_name, nil,  ::ActiveRecord::Type::Value.new, validation_type.to_s)
           end
         end
 
