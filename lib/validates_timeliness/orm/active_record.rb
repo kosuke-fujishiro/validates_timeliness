@@ -23,9 +23,9 @@ module ValidatesTimeliness
         end
         
         def lookup_cast_type(sql_type)
-          ::ActiveRecord::Type::DateTime.new if sql_type == 'datetime'
-          ::ActiveRecord::Type::Date.new if sql_type == 'date'
-          ::ActiveRecord::Type::Time.new if sql_type == 'time'
+          return ::ActiveRecord::Type::DateTime.new if sql_type == 'datetime'
+          return ::ActiveRecord::Type::Date.new if sql_type == 'date'
+          return ::ActiveRecord::Type::Time.new if sql_type == 'time'
         end
       
         def define_attribute_methods
