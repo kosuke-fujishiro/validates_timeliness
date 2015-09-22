@@ -316,5 +316,5 @@ Copyright (c) 2008 Adam Meehan, released under the MIT license
 [gem]:            http://badge.fury.io/rb/jc-validates_timeliness
 [build-badge]:    https://travis-ci.org/johncarney/validates_timeliness.svg?branch=master
 [build]:          https://travis-ci.org/johncarney/validates_timeliness
-[coverage-badge]: https://coveralls.io/repos/johncarney/validates_timeliness/badge.png?branch=master
+[coverage-badge]: https://img.shields.io/coveralls/johncarney/validates_timeliness.svg
 [coverage]:       https://coveralls.io/r/johncarney/validates_timeliness?branch=master
