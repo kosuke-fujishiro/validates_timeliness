@@ -17,10 +17,17 @@ module ValidatesTimeliness
         def timeliness_column_for_attribute(attr_name)
           columns_hash.fetch(attr_name.to_s) do |attr_name|
             validation_type = _validators[attr_name.to_sym].find {|v| v.kind == :timeliness }.type
-            ::ActiveRecord::ConnectionAdapters::Column.new(attr_name, nil, validation_type.to_s)
+            cast_type = lookup_cast_type(validation_type.to_s)
+            ::ActiveRecord::ConnectionAdapters::Column.new(attr_name, nil, cast_type, validation_type.to_s)
           end
         end
-
+        
+        def lookup_cast_type(sql_type)
+          return ::ActiveRecord::Type::DateTime.new if sql_type == 'datetime'
+          return ::ActiveRecord::Type::Date.new if sql_type == 'date'
+          return ::ActiveRecord::Type::Time.new if sql_type == 'time'
+        end
+      
         def define_attribute_methods
           super.tap do |attribute_methods_generated|
             define_timeliness_methods true
